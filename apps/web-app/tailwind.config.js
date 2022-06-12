@@ -8,6 +8,12 @@ module.exports = {
     extend: {
       colors: {
         theme: "#151828",
+        gray: "#2D2F3E",
+        border: "#818392",
+      },
+      spacing: {
+        sidebarClosed: "93px",
+        sidebarOpen: "231px",
       },
     },
   },

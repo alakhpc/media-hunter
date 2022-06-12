@@ -4,7 +4,8 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
-      "@/components/*": ["./components/*"]
+      "@/components/*": ["./components/*"],
+      "@/stores/*": ["./stores/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
