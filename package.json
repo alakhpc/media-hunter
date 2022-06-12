@@ -8,6 +8,12 @@
     "url": "https://github.com/alakhpc/media-app"
   },
   "license": "MIT",
+  "scripts": {
+    "dev": "yarn workspaces foreach -piv run dev",
+    "build": "yarn workspaces foreach -ptiv run build",
+    "start": "yarn workspaces foreach -piv run start",
+    "lint": "yarn workspaces foreach -piv run lint"
+  },
   "workspaces": [
     "apps/*"
   ],
