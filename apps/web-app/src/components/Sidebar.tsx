@@ -7,48 +7,44 @@ import { IoMdApps } from "react-icons/io";
 import { RiMenu4Fill } from "react-icons/ri";
 
 const sidebarCats = [
-  {
-    items: [
-      {
-        name: "Home",
-        icon: IoMdApps,
-        link: "/",
-        isCurrent: (path: string) => path == "/",
-      },
-      {
-        name: "Movies",
-        icon: BsPlayFill,
-        link: "/movies",
-        isCurrent: (path: string) => path == "/movies",
-      },
-      {
-        name: "TV",
-        icon: BsTvFill,
-        link: "/tv",
-        isCurrent: (path: string) => path == "/tv",
-      },
-    ],
-  },
-  {
-    items: [
-      {
-        name: "Bookmarks",
-        icon: HiBookmark,
-        link: "/bookmarks",
-        isCurrent: (path: string) => path == "/bookmarks",
-      },
-    ],
-  },
-  {
-    items: [
-      {
-        name: "Github",
-        icon: BsGithub,
-        link: "/github",
-        isCurrent: (path: string) => path == "/github",
-      },
-    ],
-  },
+  [
+    {
+      name: "Home",
+      icon: IoMdApps,
+      link: "/",
+      isCurrent: (path: string) => path == "/",
+    },
+    {
+      name: "Movies",
+      icon: BsPlayFill,
+      link: "/movies",
+      isCurrent: (path: string) => path == "/movies",
+    },
+    {
+      name: "TV",
+      icon: BsTvFill,
+      link: "/tv",
+      isCurrent: (path: string) => path == "/tv",
+    },
+  ],
+
+  [
+    {
+      name: "Bookmarks",
+      icon: HiBookmark,
+      link: "/bookmarks",
+      isCurrent: (path: string) => path == "/bookmarks",
+    },
+  ],
+
+  [
+    {
+      name: "Github",
+      icon: BsGithub,
+      link: "/github",
+      isCurrent: (path: string) => path == "/github",
+    },
+  ],
 ];
 
 const Sidebar = () => {
@@ -69,10 +65,10 @@ const Sidebar = () => {
     >
       <div className="flex flex-col p-[30px]">
         <div className="flex flex-row items-center space-x-4">
-          <div className="p-[6px]">
+          <div className="p-[2px]">
             <RiMenu4Fill
               onClick={toggleSidebar}
-              className="h-6 w-6 shrink-0 cursor-pointer"
+              className="h-7 w-7 shrink-0 cursor-pointer"
             />
           </div>
           <div
@@ -89,7 +85,7 @@ const Sidebar = () => {
               key={i}
               className="flex flex-col space-y-[26px] border-b border-border border-opacity-50 py-9"
             >
-              {cat.items.map((i) => {
+              {cat.map((i) => {
                 const isCurrent = i.isCurrent(router.asPath);
                 return (
                   <div

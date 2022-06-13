@@ -9,7 +9,7 @@ interface sidebarState {
 
 export const useSidebar = create<sidebarState>((set) => ({
   isOpen: false,
-  mobileShown: true,
+  mobileShown: false,
   toggle: () => set((state) => ({ isOpen: !state.isOpen })),
   toggleMobile: () => set((state) => ({ mobileShown: !state.mobileShown })),
 }));
