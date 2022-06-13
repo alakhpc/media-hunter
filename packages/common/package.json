@@ -1,0 +1,13 @@
+{
+  "name": "@media-app/common",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "packageManager": "yarn@3.2.1",
+  "dependencies": {
+    "got": "^12.1.0"
+  },
+  "devDependencies": {
+    "@media-app/interfaces": "workspace:*"
+  }
+}

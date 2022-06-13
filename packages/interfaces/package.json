@@ -1,0 +1,7 @@
+{
+  "name": "@media-app/interfaces",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "private": true,
+  "packageManager": "yarn@3.2.1"
+}
