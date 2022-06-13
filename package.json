@@ -12,10 +12,11 @@
     "dev": "yarn workspaces foreach -piv run dev",
     "build": "yarn workspaces foreach -ptiv run build",
     "start": "yarn workspaces foreach -piv run start",
-    "lint": "yarn workspaces foreach -piv run lint"
+    "db": "yarn workspace @media-app/db run"
   },
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "packageManager": "yarn@3.2.1"
 }
