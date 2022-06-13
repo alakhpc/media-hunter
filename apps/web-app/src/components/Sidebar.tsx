@@ -61,7 +61,7 @@ const Sidebar = () => {
           : sidebarOpen
           ? "-ml-sidebarOpen md:ml-0"
           : "-ml-sidebarClosed md:ml-0"
-      } fixed z-20 h-full border-r border-border border-opacity-[.24] bg-theme transition-all duration-300`}
+      } fixed z-20 h-full overflow-y-auto overflow-x-hidden border-r border-border border-opacity-[.24] bg-theme transition-all duration-300 scrollbar-hide`}
     >
       <div className="flex flex-col p-[30px]">
         <div className="flex flex-row items-center space-x-4">
@@ -88,11 +88,8 @@ const Sidebar = () => {
               {cat.map((i) => {
                 const isCurrent = i.isCurrent(router.asPath);
                 return (
-                  <div
-                    key={i.name}
-                    className="group flex w-max cursor-pointer flex-row items-center space-x-4"
-                  >
-                    <Link href={i.link}>
+                  <Link key={i.name} href={i.link}>
+                    <div className="group flex w-max cursor-pointer flex-row items-center space-x-4">
                       <div
                         className={`${
                           isCurrent
@@ -108,19 +105,19 @@ const Sidebar = () => {
                           } h-4 w-4 transition-colors duration-75`}
                         />
                       </div>
-                    </Link>
-                    <div
-                      className={`${
-                        sidebarOpen ? "opacity-100" : "invisible opacity-0"
-                      } ${
-                        isCurrent
-                          ? "text-white"
-                          : "text-border group-hover:text-white"
-                      } text-sm transition-all duration-200`}
-                    >
-                      {i.name}
+                      <div
+                        className={`${
+                          sidebarOpen ? "opacity-100" : "opacity-0"
+                        } ${
+                          isCurrent
+                            ? "text-white"
+                            : "text-border group-hover:text-white"
+                        } text-sm transition-all duration-200`}
+                      >
+                        {i.name}
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>

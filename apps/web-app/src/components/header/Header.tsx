@@ -7,7 +7,7 @@ const Header = () => {
   const [transparent, setTransparent] = useState(false);
 
   return (
-    <div className="flex h-[96px] flex-row items-center justify-between p-4 md:pl-0">
+    <div className="flex h-20 flex-row items-center justify-between p-4 md:h-24 md:pl-0">
       <MenuIcon />
       <SearchBar transparent={transparent} />
       <UserButton />
