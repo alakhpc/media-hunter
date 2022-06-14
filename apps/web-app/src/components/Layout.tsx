@@ -1,7 +1,7 @@
 import BlackOverlay from "./BlackOverlay";
 import Container from "./Container";
 import Header from "./header";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar";
 
 interface LayoutProps {
   children: React.ReactNode;
