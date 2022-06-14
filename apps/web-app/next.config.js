@@ -2,7 +2,9 @@
 const nextConfig = {
   experimental: { externalDir: true },
   reactStrictMode: true,
-  images: { domains: ["lh3.googleusercontent.com"] },
+  images: {
+    domains: ["lh3.googleusercontent.com", "image.tmdb.org", "http.cat"],
+  },
   redirects: async () => [
     {
       source: "/github",

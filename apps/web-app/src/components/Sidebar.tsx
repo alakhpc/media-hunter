@@ -1,8 +1,9 @@
 import { useSidebar } from "@/stores/sidebar";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { BsGithub, BsPlayFill, BsTvFill } from "react-icons/bs";
-import { HiBookmark } from "react-icons/hi";
+import { BsGithub, BsTvFill } from "react-icons/bs";
+import { MdMovie } from "react-icons/md";
+import { HiBookmark, HiClock } from "react-icons/hi";
 import { IoMdApps } from "react-icons/io";
 import { RiMenu4Fill } from "react-icons/ri";
 
@@ -16,7 +17,7 @@ const sidebarCats = [
     },
     {
       name: "Movies",
-      icon: BsPlayFill,
+      icon: MdMovie,
       link: "/movies",
       isCurrent: (path: string) => path == "/movies",
     },
@@ -34,6 +35,12 @@ const sidebarCats = [
       icon: HiBookmark,
       link: "/bookmarks",
       isCurrent: (path: string) => path == "/bookmarks",
+    },
+    {
+      name: "History",
+      icon: HiClock,
+      link: "/history",
+      isCurrent: (path: string) => path == "/history",
     },
   ],
 
@@ -89,34 +96,36 @@ const Sidebar = () => {
                 const isCurrent = i.isCurrent(router.asPath);
                 return (
                   <Link key={i.name} href={i.link}>
-                    <div className="group flex w-max cursor-pointer flex-row items-center space-x-4">
-                      <div
-                        className={`${
-                          isCurrent
-                            ? "bg-white"
-                            : "bg-gray group-hover:bg-white"
-                        } flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-75`}
-                      >
-                        <i.icon
+                    <a>
+                      <div className="group flex w-max cursor-pointer flex-row items-center space-x-4">
+                        <div
                           className={`${
                             isCurrent
-                              ? "text-black"
-                              : "text-white group-hover:text-black"
-                          } h-4 w-4 transition-colors duration-75`}
-                        />
+                              ? "bg-white"
+                              : "bg-gray group-hover:bg-white"
+                          } flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-75`}
+                        >
+                          <i.icon
+                            className={`${
+                              isCurrent
+                                ? "text-black"
+                                : "text-white group-hover:text-black"
+                            } h-4 w-4 transition-colors duration-75`}
+                          />
+                        </div>
+                        <div
+                          className={`${
+                            sidebarOpen ? "opacity-100" : "opacity-0"
+                          } ${
+                            isCurrent
+                              ? "text-white"
+                              : "text-border group-hover:text-white"
+                          } text-sm transition-all duration-200`}
+                        >
+                          {i.name}
+                        </div>
                       </div>
-                      <div
-                        className={`${
-                          sidebarOpen ? "opacity-100" : "opacity-0"
-                        } ${
-                          isCurrent
-                            ? "text-white"
-                            : "text-border group-hover:text-white"
-                        } text-sm transition-all duration-200`}
-                      >
-                        {i.name}
-                      </div>
-                    </div>
+                    </a>
                   </Link>
                 );
               })}

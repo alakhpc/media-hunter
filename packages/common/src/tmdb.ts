@@ -8,13 +8,15 @@ import type {
   TVDetails,
   TVWithMediaType,
 } from "@media-app/interfaces";
-import { tmdb } from "./got";
+import { tmdbClient } from "./got";
 
 const tmdbFetcher = async <T>(
   url: string,
   searchParams?: Record<string, string | number | boolean | null | undefined>
 ): Promise<T> => {
-  return await tmdb.get(url, searchParams ? { searchParams } : {}).json<T>();
+  return await tmdbClient
+    .get(url, searchParams ? { searchParams } : {})
+    .json<T>();
 };
 
 export const getPopularMovies = async () => {
