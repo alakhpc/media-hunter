@@ -4,9 +4,9 @@ import {
   formatMovieForPoster,
   formatTVForPoster,
 } from "lib/formatMediaForPoster";
-import type { InferGetStaticPropsType } from "next";
+import type { InferNextProps } from "infer-next-props-type";
 
-const Home = ({ sliders }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({ sliders }: InferNextProps<typeof getStaticProps>) => {
   return (
     <div className="mx-4 flex flex-col space-y-10">
       {sliders.map((s, i) => (

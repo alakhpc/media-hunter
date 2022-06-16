@@ -1,8 +1,10 @@
 import { MediaPosterProps } from "@/components/MediaPoster";
 import { Movie, TV } from "@media-app/interfaces";
 
-export const getImageUrl = (poster_path: string) => {
-  return `https://image.tmdb.org/t/p/original${poster_path}`;
+export const getImageUrl = (poster_path: string | null) => {
+  return poster_path
+    ? `https://image.tmdb.org/t/p/original${poster_path}`
+    : null;
 };
 
 export const formatMovieForPoster = ({
@@ -16,7 +18,7 @@ export const formatMovieForPoster = ({
     type: "movie",
     id,
     title,
-    poster: poster_path ? getImageUrl(poster_path) : null,
+    poster: getImageUrl(poster_path),
     year: release_date?.slice(0, 4) ?? null,
     rating: vote_average,
   };

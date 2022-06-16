@@ -27,8 +27,8 @@ const SidebarIcon = ({ categories }: SidebarIconProps) => {
             const isCurrent = currentPageCheck(router.asPath);
             return (
               <Link key={icon.name} href={icon.link}>
-                <a>
-                  <div className="group flex w-max cursor-pointer flex-row items-center space-x-4">
+                <a className="w-min">
+                  <div className="group flex cursor-pointer flex-row items-center space-x-4 pr-3">
                     <div
                       className={`${
                         isCurrent ? "bg-white" : "bg-gray group-hover:bg-white"

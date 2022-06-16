@@ -11,7 +11,7 @@ const Container = ({ children }: ContainerProps) => {
     <div
       className={`${
         sidebarOpen ? "md:ml-sidebarOpen" : "md:ml-sidebarClosed"
-      } transition-all duration-300`}
+      } flex h-screen flex-col transition-all duration-300`}
     >
       {children}
     </div>
