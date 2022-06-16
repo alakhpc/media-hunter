@@ -10,7 +10,7 @@ const Header = () => {
     <div
       className={`${
         transparent ? "bg-transparent" : "bg-theme"
-      } mx-4 my-2 flex h-16 flex-row items-center justify-between md:h-20`}
+      } mx-4 flex h-16 flex-row items-center justify-between md:h-20`}
     >
       <MenuIcon />
       <SearchBar transparent={transparent} />

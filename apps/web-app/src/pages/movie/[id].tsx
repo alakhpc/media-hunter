@@ -44,7 +44,7 @@ const MoviePage = ({
         <Trailer ytKey={trailerKey} onClose={() => setTrailerShown(false)} />
       )}
 
-      <div className="relative inset-0 -z-10 -mt-16 h-[35%] md:-mt-20 md:h-2/3">
+      <div className="relative inset-0 -z-10 -mt-16 h-[45vh] md:-mt-20 md:h-[60vh]">
         {/* Could not pick between curved top vs gradient top so left both in for now */}
         {/* Curved top */}
         <div className="absolute bottom-0 z-10 h-8 w-full rounded-t-full bg-theme" />
@@ -62,7 +62,7 @@ const MoviePage = ({
         />
 
         {!!logo && (
-          <div className="absolute inset-[50%] h-full max-h-[60%] w-full max-w-[85%] translate-x-[-50%] translate-y-[-60%] md:max-w-2xl md:translate-y-[-60%]">
+          <div className="absolute inset-[50%] h-full max-h-[60%] w-full max-w-[85%] translate-x-[-50%] translate-y-[-70%] md:max-w-2xl md:translate-y-[-60%]">
             <Image
               src={logo}
               layout="fill"
@@ -79,6 +79,7 @@ const MoviePage = ({
             <div className="group relative">
               <Image
                 src={poster || "https://http.cat/404"}
+                priority={true}
                 layout="responsive"
                 width={1}
                 height={1.5}
