@@ -6,7 +6,7 @@ export const UserButton = () => {
 
   return session ? (
     <div className="flex flex-row items-center space-x-2">
-      <div className="min-w-[48px] md:w-14">
+      <div className="w-[48px]">
         <Image
           layout="responsive"
           src={session.user!.image!}
