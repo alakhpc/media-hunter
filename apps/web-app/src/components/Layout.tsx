@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
         <BlackOverlay />
         <Header />
 
-        <div className="relative grow">{children}</div>
+        <div className="grow">{children}</div>
       </Container>
     </>
   );

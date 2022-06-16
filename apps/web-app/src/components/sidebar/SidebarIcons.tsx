@@ -32,14 +32,14 @@ const SidebarIcon = ({ categories }: SidebarIconProps) => {
                     <div
                       className={`${
                         isCurrent ? "bg-white" : "bg-gray group-hover:bg-white"
-                      } flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-75`}
+                      } flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-200`}
                     >
                       <icon.icon
                         className={`${
                           isCurrent
                             ? "text-black"
                             : "text-white group-hover:text-black"
-                        } h-4 w-4 transition-colors duration-75`}
+                        } h-4 w-4 transition-colors duration-200`}
                       />
                     </div>
                     <div

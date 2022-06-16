@@ -10,6 +10,7 @@ module.exports = {
         theme: "#151828",
         gray: "#2D2F3E",
         lightgray: "#2D2F3E",
+        graytext: "#9CA3AF",
         border: "#818392",
       },
       spacing: {

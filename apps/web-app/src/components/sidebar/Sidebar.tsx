@@ -18,13 +18,13 @@ const sidebarCats = [
       name: "Movies",
       icon: MdMovie,
       link: "/movies",
-      currentPageCheck: (path: string) => path == "/movies",
+      currentPageCheck: (path: string) => path.startsWith("/movie"),
     },
     {
       name: "TV",
       icon: BsTvFill,
       link: "/tv",
-      currentPageCheck: (path: string) => path == "/tv",
+      currentPageCheck: (path: string) => path.startsWith("/tv"),
     },
   ],
 

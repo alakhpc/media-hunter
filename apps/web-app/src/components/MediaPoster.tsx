@@ -43,12 +43,12 @@ const MediaPoster = ({
           <div className="flex w-36 flex-col space-y-1 md:w-48">
             <div className="flex flex-row items-center justify-between">
               <div className="w-10/12 truncate font-semibold">{title}</div>
-              <MediaIcon className="h-5 w-5 text-[#9CA3AF]" />
+              <MediaIcon className="h-5 w-5 text-graytext" />
             </div>
-            <div className="flex flex-row justify-between text-sm text-[#9CA3AF]">
+            <div className="flex flex-row justify-between text-sm text-graytext">
               <div>{year}</div>
               <div className="flex flex-row items-center space-x-1">
-                <div>{rating}</div>
+                <div>{rating?.toFixed(1) || "Unknown"}</div>
                 <HiStar className="h-5 w-5" />
               </div>
             </div>
