@@ -10,11 +10,11 @@ const SearchBar = ({ transparent }: SearchBarProps) => {
       <input
         type="text"
         placeholder="Search"
-        className={`h-8 w-full pr-8 ${
+        className={`${
           transparent
-            ? "bg-white/10 shadow-lg backdrop-blur-sm"
+            ? "bg-white/10 shadow-lg backdrop-blur-[1px]"
             : "bg-lightgray"
-        } rounded-md border-none placeholder:text-white/50`}
+        } h-8 w-full rounded-md border-none pr-8 placeholder:text-white/70`}
       />
       <div className="absolute top-[6px] right-2 text-white/60">
         <HiSearch className="h-5 w-5" />

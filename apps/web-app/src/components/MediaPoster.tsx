@@ -10,7 +10,7 @@ export interface MediaPosterProps {
   title: string;
   poster: string | null;
   year: string | null;
-  rating: number | null;
+  rating: string;
 }
 
 const MediaPoster = ({
@@ -48,7 +48,7 @@ const MediaPoster = ({
             <div className="flex flex-row justify-between text-sm text-graytext">
               <div>{year}</div>
               <div className="flex flex-row items-center space-x-1">
-                <div>{rating?.toFixed(1) || "Unknown"}</div>
+                <div>{rating || "Unknown"}</div>
                 <HiStar className="h-5 w-5" />
               </div>
             </div>

@@ -1,4 +1,7 @@
+import CastSlider from "@/components/CastSlider";
 import GenreButton from "@/components/GenreButton";
+import RecommendationsSlider from "@/components/RecommendationsSlider";
+import Trailer from "@/components/Trailer";
 import { tmdbClient } from "@media-app/common";
 import {
   Credits,
@@ -20,6 +23,7 @@ import { HiStar } from "react-icons/hi";
 const MoviePage = ({
   media_type,
   title,
+  overview,
   backdrop,
   logo,
   poster,
@@ -28,12 +32,19 @@ const MoviePage = ({
   runtime,
   releaseDate,
   status,
+  trailerKey,
+  cast,
+  recommendations,
 }: InferNextProps<typeof getStaticProps>) => {
   const [trailerShown, setTrailerShown] = useState(false);
 
   return (
     <>
-      <div className="relative inset-0 -z-10 -mt-16 h-[55%] md:-mt-20 md:h-2/3">
+      {trailerShown && (
+        <Trailer ytKey={trailerKey} onClose={() => setTrailerShown(false)} />
+      )}
+
+      <div className="relative inset-0 -z-10 -mt-16 h-[35%] md:-mt-20 md:h-2/3">
         {/* Could not pick between curved top vs gradient top so left both in for now */}
         {/* Curved top */}
         <div className="absolute bottom-0 z-10 h-8 w-full rounded-t-full bg-theme" />
@@ -50,7 +61,7 @@ const MoviePage = ({
           alt={`${title} backdrop`}
         />
 
-        {logo && (
+        {!!logo && (
           <div className="absolute inset-[50%] h-full max-h-[60%] w-full max-w-[85%] translate-x-[-50%] translate-y-[-60%] md:max-w-2xl md:translate-y-[-60%]">
             <Image
               src={logo}
@@ -62,21 +73,34 @@ const MoviePage = ({
         )}
       </div>
 
-      <div className="mx-3 flex flex-col md:ml-8">
+      <div className="mx-3 flex flex-col space-y-8 md:ml-8">
         <div className="grid gap-8 md:grid-cols-[min-content,auto]">
           <div className="mx-auto -mt-36 w-56 rounded-3xl md:-mt-40 md:w-64">
-            <Image
-              src={poster || "https://http.cat/404"}
-              layout="responsive"
-              width={1}
-              height={1.5}
-              alt={`${title} poster`}
-              className="rounded-3xl"
-            />
+            <div className="group relative">
+              <Image
+                src={poster || "https://http.cat/404"}
+                layout="responsive"
+                width={1}
+                height={1.5}
+                alt={`${title} poster`}
+                className="rounded-3xl"
+              />
+              <div
+                className="absolute inset-0 flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-3xl bg-black/60 opacity-0 transition duration-200 group-hover:opacity-100"
+                onClick={() => setTrailerShown(true)}
+              >
+                <div className="flex flex-col items-center justify-center">
+                  <BsFillPlayFill className="h-10 w-10" />
+                  <div className="text-xl">Trailer</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="mb-2 mt-4 flex flex-col items-center justify-end gap-3 md:items-start">
-            <div className="mb-1 text-4xl font-semibold">{title}</div>
+            <div className="mb-1 text-center text-4xl font-semibold">
+              {title}
+            </div>
             <div className="flex flex-row flex-wrap gap-1">
               {genres.map((genre) => (
                 <GenreButton
@@ -101,7 +125,9 @@ const MoviePage = ({
             <div className="flex flex-row gap-1.5">
               <button
                 className="flex flex-row items-center gap-1 rounded-md bg-lightgray py-2 px-4 transition duration-200 hover:bg-white hover:text-black"
-                onClick={() => {}}
+                onClick={() => {
+                  setTrailerShown(true);
+                }}
               >
                 <BsFillPlayFill className="h-5 w-5" />
                 <div className="text-sm">Trailer</div>
@@ -116,6 +142,19 @@ const MoviePage = ({
               </button>
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <div className="text-4xl font-light">Overview</div>
+          <div className="text-graytext">{overview}</div>
+
+          <hr />
+          <div className="text-4xl font-light">Cast</div>
+          <CastSlider cast={cast} />
+
+          <hr />
+          <div className="text-4xl font-light">Recommendations</div>
+          <RecommendationsSlider recommendations={recommendations} />
         </div>
       </div>
     </>
@@ -177,7 +216,6 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   return {
     props: {
       media_type: "movie",
-      id: movieData.id,
       status: movieData.status,
       title: movieData.title,
       overview: movieData.overview,
@@ -190,8 +228,8 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
       runtime: `${Math.floor(runtime / 60)}h ${runtime % 60}m`,
       releaseDate: movieData.release_date || null,
       cast: movieData.credits.cast.slice(0, 15).map((p) => ({
-        name: p.name,
         id: p.id,
+        name: p.name,
         image: getImageUrl(p.profile_path),
         character: p.character,
       })),
