@@ -1,7 +1,7 @@
-import MediaPage from "@/components/MediaPage";
+import MediaPage, { MediaPageProps } from "@/components/MediaPage";
 import { tmdb } from "@media-app/common";
 import InferNextProps from "infer-next-props-type";
-import { formatMovieForPage } from "lib/formatMediaForPage";
+import { formatTVForPage } from "lib/formatMediaForPage";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 
 const MoviePage = (props: InferNextProps<typeof getStaticProps>) => {
@@ -9,7 +9,7 @@ const MoviePage = (props: InferNextProps<typeof getStaticProps>) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const movies = await tmdb.getPopularMovies();
+  const movies = await tmdb.getPopularTV();
   const paths = movies.map(({ id }) => ({ params: { id: id.toString() } }));
 
   return {
@@ -21,15 +21,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const id = parseInt(params?.id as string);
 
-  let movieData = await tmdb.getMoviePageDetails(id);
-  if (!movieData) {
+  let tvData = await tmdb.getTVPageDetails(id);
+  if (!tvData) {
     return {
       notFound: true,
       revalidate: 10,
     };
   }
 
-  const props = formatMovieForPage(movieData);
+  const props = formatTVForPage(tvData);
   return {
     props,
     revalidate: 604800, // Revalidate every week

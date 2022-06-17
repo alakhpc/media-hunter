@@ -77,3 +77,15 @@ export const getMoviePageDetails = async (id: number) => {
 
   return movieData;
 };
+
+export const getTVPageDetails = async (id: number) => {
+  let tvData = await tmdbFetcher<
+    TVDetails & Images & Videos & Credits & Recommendations<TV>
+  >(`tv/${id}`, {
+    append_to_response: "images,videos,credits,recommendations",
+    include_image_language: languages,
+    include_video_language: languages,
+  }).catch((_) => null);
+
+  return tvData;
+};
