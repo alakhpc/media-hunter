@@ -1,6 +1,5 @@
 import MediaPage, { MediaPageProps } from "@/components/MediaPage";
-import { tmdb, tmdbClient } from "@media-app/common";
-import { Movie, TMDBListWrapper } from "@media-app/interfaces";
+import { tmdb } from "@media-app/common";
 import { formatMovieForPage } from "lib/formatMediaForPage";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
 
@@ -9,12 +8,8 @@ const MoviePage = (props: MediaPageProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async ({}) => {
-  // pre-generate popular movies
-  const movieIds = (
-    await tmdbClient.get("movie/popular").json<TMDBListWrapper<Movie>>()
-  ).results.map((m) => m.id.toString());
-
-  const paths = movieIds.map((id) => ({ params: { id } }));
+  const movies = await tmdb.getPopularMovies();
+  const paths = movies.map(({ id }) => ({ params: { id: id.toString() } }));
 
   return {
     paths,
