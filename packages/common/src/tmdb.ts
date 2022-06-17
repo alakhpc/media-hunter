@@ -1,14 +1,20 @@
 import type {
+  Credits,
+  Images,
   Movie,
   MovieDetails,
   MovieWithMediaType,
   PersonWithMediaType,
+  Recommendations,
   TMDBListWrapper,
   TV,
   TVDetails,
   TVWithMediaType,
+  Videos,
 } from "@media-app/interfaces";
 import { tmdbClient } from "./got";
+
+const languages = ["en", "en-US", null].join(",");
 
 const tmdbFetcher = async <T>(
   url: string,
@@ -58,4 +64,16 @@ export const getTVSByGenre = async (genreId: string | number) => {
       sort_by: "popularity.desc",
     })
   ).results;
+};
+
+export const getMoviePageDetails = async (id: number) => {
+  let movieData = await tmdbFetcher<
+    MovieDetails & Images & Videos & Credits & Recommendations<Movie>
+  >(`movie/${id}`, {
+    append_to_response: "images,videos,credits,recommendations",
+    include_image_language: languages,
+    include_video_language: languages,
+  }).catch((_) => null);
+
+  return movieData;
 };

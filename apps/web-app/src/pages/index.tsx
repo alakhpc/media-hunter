@@ -19,11 +19,11 @@ const Home = ({ sliders }: InferNextProps<typeof getStaticProps>) => {
 export const getStaticProps = async () => {
   let popularMovies = (await tmdb.getPopularMovies())
     .slice(0, 25)
-    .map((m) => formatMovieForPoster(m));
+    .map(formatMovieForPoster);
 
   let popularTV = (await tmdb.getPopularTV())
     .slice(0, 25)
-    .map((m) => formatTVForPoster(m));
+    .map(formatTVForPoster);
 
   return {
     props: {
