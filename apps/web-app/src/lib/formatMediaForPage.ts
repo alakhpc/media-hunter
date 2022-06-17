@@ -5,15 +5,21 @@ import {
   Movie,
   MovieDetails,
   Recommendations,
+  TV,
+  TVDetails,
+  TVExternalIds,
   Videos,
 } from "@media-app/interfaces";
-import { formatMovieForPoster, getImageUrl } from "./formatMediaForPoster";
+import {
+  formatMovieForPoster,
+  formatTVForPoster,
+  getImageUrl,
+} from "./formatMediaForPoster";
 
 export const formatMovieForPage = (
   m: MovieDetails & Images & Videos & Credits & Recommendations<Movie>
 ): MediaPageProps => {
   let runtimeValue = m.runtime ?? 0;
-
   const ytKey =
     m.videos.results.filter(
       (video) =>
@@ -24,7 +30,7 @@ export const formatMovieForPage = (
   const status = m.status;
   const title = m.title;
   const overview = m.overview;
-  const poster = getImageUrl(m.poster_path);
+  const poster = getImageUrl(m.images.posters[1]?.file_path ?? m.poster_path);
   const backdrop = getImageUrl(m.backdrop_path);
   const logo = getImageUrl(m.images.logos[0]?.file_path ?? null);
   const trailerKey = ytKey;
@@ -39,6 +45,54 @@ export const formatMovieForPage = (
     image: getImageUrl(p.profile_path),
   }));
   const recommendations = m.recommendations.results.map(formatMovieForPoster);
+
+  return {
+    media_type,
+    status,
+    title,
+    overview,
+    poster,
+    backdrop,
+    logo,
+    trailerKey,
+    genres,
+    rating,
+    runtime,
+    year,
+    cast,
+    recommendations,
+  };
+};
+
+export const formatTVForPage = (
+  tv: TVDetails & Images & Videos & Credits & Recommendations<TV>
+): MediaPageProps => {
+  let runtimeValue = tv.episode_run_time[0] ?? 0;
+  const ytKey =
+    tv.videos.results.filter(
+      (video) =>
+        video.site === "YouTube" && video.official && video.type === "Trailer"
+    )[0]?.key ?? null;
+
+  const media_type = "tv";
+  const status = tv.status;
+  const title = tv.name;
+  const overview = tv.overview;
+  const poster = getImageUrl(tv.images.posters[1]?.file_path ?? tv.poster_path);
+  const backdrop = getImageUrl(tv.backdrop_path);
+  const logo = getImageUrl(tv.images.logos[0]?.file_path ?? null);
+  const trailerKey = ytKey;
+  const genres = tv.genres.slice(0, 4);
+  const rating = tv.vote_average.toFixed(1);
+  const runtime = `${runtimeValue % 60}m`;
+  const year = tv.first_air_date?.slice(0, 4) ?? null;
+  const cast = tv.credits.cast.slice(0, 10).map((p) => ({
+    id: p.id,
+    name: p.name,
+    character: p.character,
+    image: getImageUrl(p.profile_path),
+  }));
+  const recommendations = tv.recommendations.results.map(formatTVForPoster);
 
   return {
     media_type,
