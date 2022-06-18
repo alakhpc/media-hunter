@@ -48,6 +48,13 @@ export const getMultiSearch = async (query: string) => {
   ).results;
 };
 
+export const getMovieTVSearch = async (query: string) => {
+  return (await getMultiSearch(query)).filter(
+    (m): m is MovieWithMediaType | TVWithMediaType =>
+      m.media_type === "movie" || m.media_type === "tv"
+  );
+};
+
 export const getMoviesByGenre = async (genreId: string | number) => {
   return (
     await tmdbFetcher<TMDBListWrapper<Movie>>("discover/movie", {

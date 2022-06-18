@@ -11,7 +11,6 @@ const Header = () => {
   const [transparent, setTransparent] = useState(true);
 
   const transparentScroll = 192;
-
   // Make header top transparent for /movie/123 and /tv/123
   useEffect(() => {
     const handleScroll = throttle(150, () => {

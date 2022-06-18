@@ -1,4 +1,4 @@
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from "@/stores/sidebarStore";
 
 interface ContainerProps {
   children: React.ReactNode;

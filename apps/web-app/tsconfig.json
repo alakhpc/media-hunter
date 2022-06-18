@@ -5,11 +5,14 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "@/components/*": ["./components/*"],
-      "@/stores/*": ["./stores/*"]
+      "@/stores/*": ["./stores/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/server/*": ["./server/*"]
     },
+
+    "strict": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",

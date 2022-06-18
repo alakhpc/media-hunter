@@ -1,4 +1,4 @@
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from "@/stores/sidebarStore";
 import { RiMenu4Fill } from "react-icons/ri";
 
 const MenuIcon = () => {

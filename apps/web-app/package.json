@@ -13,6 +13,10 @@
     "@media-app/common": "workspace:*",
     "@media-app/db": "workspace:*",
     "@next-auth/prisma-adapter": "^1.0.3",
+    "@trpc/client": "^9.25.3",
+    "@trpc/next": "^9.25.3",
+    "@trpc/react": "^9.25.3",
+    "@trpc/server": "^9.25.3",
     "env-cmd": "^10.1.0",
     "infer-next-props-type": "^0.0.4",
     "next": "12.1.6",
@@ -20,8 +24,10 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
+    "react-query": "^3.39.1",
     "sharp": "^0.30.6",
     "throttle-debounce": "^5.0.0",
+    "zod": "^3.17.3",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {

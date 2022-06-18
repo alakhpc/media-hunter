@@ -1,6 +1,8 @@
 import Layout from "@/components/Layout";
+import { withTRPC } from "@trpc/next";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+import { AppRouter } from "./api/trpc/[trpc]";
 import "tailwindcss/tailwind.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
@@ -13,4 +15,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   );
 }
 
-export default MyApp;
+export default withTRPC<AppRouter>({
+  config() {
+    return { url: `/api/trpc` };
+  },
+})(MyApp);

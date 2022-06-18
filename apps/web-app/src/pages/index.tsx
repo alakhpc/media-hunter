@@ -1,9 +1,9 @@
 import Slider from "@/components/Slider";
-import { tmdb } from "@media-app/common";
 import {
   formatMovieForPoster,
   formatTVForPoster,
-} from "lib/formatMediaForPoster";
+} from "@/lib/formatMediaForPoster";
+import { tmdb } from "@media-app/common";
 import type { InferNextProps } from "infer-next-props-type";
 
 const Home = ({ sliders }: InferNextProps<typeof getStaticProps>) => {

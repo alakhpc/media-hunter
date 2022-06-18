@@ -1,4 +1,4 @@
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from "@/stores/sidebarStore";
 
 const BlackOverlay = () => {
   const mobileShown = useSidebar((s) => s.mobileShown);

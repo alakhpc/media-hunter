@@ -1,4 +1,4 @@
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from "@/stores/sidebarStore";
 import { BsGithub, BsTvFill } from "react-icons/bs";
 import { HiBookmark, HiClock } from "react-icons/hi";
 import { IoMdApps } from "react-icons/io";

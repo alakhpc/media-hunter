@@ -1,4 +1,4 @@
-import { useSidebar } from "@/stores/sidebar";
+import { useSidebar } from "@/stores/sidebarStore";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { IconType } from "react-icons";
