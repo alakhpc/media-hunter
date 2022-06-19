@@ -38,7 +38,7 @@ export const formatMovieForPage = (
   const rating = m.vote_average.toFixed(1);
   const runtime = `${Math.floor(runtimeValue / 60)}h ${runtimeValue % 60}m`;
   const year = m.release_date?.slice(0, 4) ?? null;
-  const cast = m.credits.cast.slice(0, 10).map((p) => ({
+  const cast = m.credits.cast.slice(0, 20).map((p) => ({
     id: p.id,
     name: p.name,
     character: p.character,
@@ -86,7 +86,7 @@ export const formatTVForPage = (
   const rating = tv.vote_average.toFixed(1);
   const runtime = `${runtimeValue % 60}m`;
   const year = tv.first_air_date?.slice(0, 4) ?? null;
-  const cast = tv.credits.cast.slice(0, 10).map((p) => ({
+  const cast = tv.credits.cast.slice(0, 20).map((p) => ({
     id: p.id,
     name: p.name,
     character: p.character,
