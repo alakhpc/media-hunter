@@ -1,5 +1,6 @@
 import type {
   Credits,
+  Genre,
   Images,
   Movie,
   MovieDetails,
@@ -95,4 +96,12 @@ export const getTVPageDetails = async (id: number) => {
   }).catch((_) => null);
 
   return tvData;
+};
+
+export const getMovieGenres = async () => {
+  return (await tmdbFetcher<{ genres: Genre[] }>(`genre/movie/list`)).genres;
+};
+
+export const getTVGenres = async () => {
+  return (await tmdbFetcher<{ genres: Genre[] }>(`genre/tv/list`)).genres;
 };
