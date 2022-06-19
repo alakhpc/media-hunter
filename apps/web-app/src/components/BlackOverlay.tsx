@@ -9,7 +9,7 @@ const BlackOverlay = () => {
       onClick={toggleMobile}
       className={`${
         mobileShown ? "block md:hidden" : "hidden"
-      } fixed z-10 h-full w-full bg-black/50`}
+      } fixed z-20 h-full w-full bg-black/50`}
     />
   );
 };

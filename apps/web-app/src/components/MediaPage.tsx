@@ -81,7 +81,7 @@ const MediaPage = ({
         )}
       </div>
 
-      <div className="mx-3 flex flex-col space-y-8 md:ml-8">
+      <div className="mx-4 flex flex-col space-y-8 md:ml-8">
         <div className="grid gap-8 md:grid-cols-[min-content,auto]">
           <div className="mx-auto -mt-36 w-56 rounded-3xl md:-mt-40 md:w-64">
             <div className="group relative">

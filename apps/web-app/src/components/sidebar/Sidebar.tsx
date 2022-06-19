@@ -66,7 +66,7 @@ const Sidebar = () => {
           : sidebarOpen
           ? "-ml-sidebarOpen md:ml-0"
           : "-ml-sidebarClosed md:ml-0"
-      } fixed z-20 h-full overflow-y-auto overflow-x-hidden border-r border-border border-opacity-[.24] bg-theme transition-all duration-300 scrollbar-hide`}
+      } fixed z-30 h-full overflow-y-auto overflow-x-hidden border-r border-border border-opacity-[.24] bg-theme transition-all duration-300 scrollbar-hide`}
     >
       <div className="flex flex-col p-[30px]">
         <div className="flex flex-row items-center space-x-4">
