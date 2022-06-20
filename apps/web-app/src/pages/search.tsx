@@ -16,7 +16,7 @@ const Search = () => {
       <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-3 md:grid-cols-[repeat(auto-fill,minmax(148px,1fr))]">
         {results.data ? (
           results.data.map((r, i) => (
-            <MediaPoster key={i} preload={true} {...r} />
+            <MediaPoster key={i} preload={false} border={false} {...r} />
           ))
         ) : (
           <></>

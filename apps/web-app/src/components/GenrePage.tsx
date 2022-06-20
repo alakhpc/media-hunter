@@ -30,7 +30,7 @@ const GenrePage = ({ media_type, genres, text, media }: GenrePageProps) => {
       <hr />
       <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-3 md:grid-cols-[repeat(auto-fill,minmax(148px,1fr))]">
         {media.map((r, i) => (
-          <MediaPoster key={i} preload={true} {...r} />
+          <MediaPoster key={i} preload={false} {...r} border={true} />
         ))}
       </div>
     </div>

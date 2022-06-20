@@ -15,20 +15,25 @@ export interface MediaPosterProps {
 
 const MediaPoster = ({
   preload,
+  border,
   type,
   id,
   title,
   poster,
   year,
   rating,
-}: { preload: boolean } & MediaPosterProps) => {
+}: { preload: boolean; border: boolean } & MediaPosterProps) => {
   let MediaIcon = type === "movie" ? MdMovie : BsTvFill;
 
   return (
     <Link href={`/${type}/${id}`}>
       <a>
-        <div className={`flex cursor-pointer flex-col space-y-3`}>
-          <div className="shrink-0 rounded-lg border-2 border-transparent shadow-sm transition duration-200 hover:scale-105 hover:border-white">
+        <div className="space-y- flex cursor-pointer flex-col">
+          <div
+            className={`${
+              border ? "border-2 border-transparent hover:border-white" : ""
+            } shrink-0 rounded-lg shadow-sm transition duration-200 hover:scale-105`}
+          >
             <Image
               src={poster || "https://http.cat/404"}
               layout="responsive"

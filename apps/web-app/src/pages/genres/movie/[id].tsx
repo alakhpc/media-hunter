@@ -27,7 +27,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const id = parseInt(params?.id as string);
-
   const movies = (await tmdb.getMoviesByGenre(id)).map(formatMovieForPoster);
 
   return {
