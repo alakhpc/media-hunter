@@ -28,7 +28,7 @@ const MediaPoster = ({
   return (
     <Link href={`/${type}/${id}`}>
       <a>
-        <div className="space-y- flex cursor-pointer flex-col">
+        <div className="flex cursor-pointer flex-col space-y-3">
           <div
             className={`${
               border ? "border-2 border-transparent hover:border-white" : ""
