@@ -35,12 +35,6 @@ const sidebarCats = [
       link: "/watchlist",
       currentPageCheck: (path: string) => path == "/watchlist",
     },
-    {
-      name: "History",
-      icon: HiClock,
-      link: "/history",
-      currentPageCheck: (path: string) => path == "/history",
-    },
   ],
 
   [
