@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+export type { Watchlist } from "@prisma/client";
+export {} from "@prisma/client";
 
 declare global {
   var prisma: PrismaClient | undefined;

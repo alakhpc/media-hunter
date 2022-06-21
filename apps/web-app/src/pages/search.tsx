@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 const Search = () => {
   const router = useRouter();
   const query = router.query.q as string;
-  const results = trpc.useQuery(["search", query]);
+  const results = trpc.useQuery(["search.multi", query]);
 
   return (
     <div className="mx-4 mt-5 flex flex-col space-y-4">

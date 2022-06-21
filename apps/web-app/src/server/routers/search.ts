@@ -7,7 +7,7 @@ import { getMovieTVSearch } from "@media-app/common/src/tmdb";
 import { z } from "zod";
 import { createRouter } from "../createRouter";
 
-export const searchRouter = createRouter().query("search", {
+export const searchRouter = createRouter().query("multi", {
   input: z.string().trim().min(1),
 
   async resolve({ input: query }): Promise<MediaPosterProps[]> {
