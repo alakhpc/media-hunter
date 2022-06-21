@@ -35,6 +35,7 @@ export const useWatchlistItem = ({ tmdbId, isTV }: useWatchlistItemParams) => {
     });
 
     utils.invalidateQueries(["watchlist.user.check", { tmdbId, isTV }]);
+    utils.invalidateQueries(["watchlist.user"]);
   };
 
   return { inWatchlistQuery, toggleWatchlist };

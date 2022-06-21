@@ -4,16 +4,13 @@ import { useRouter } from "next/router";
 
 const Search = () => {
   const router = useRouter();
-  const query = router.query.q as string;
-  const searchQuery = trpc.useQuery(["search.multi", query]);
+  const watchlistQuery = trpc.useQuery(["watchlist.user"]);
 
   return (
     <div className="mx-4 mt-5 flex flex-col space-y-4">
-      <div className="text-3xl md:text-4xl">
-        Search Results for <p className="inline font-semibold">{query}</p>
-      </div>
+      <div className="text-3xl md:text-4xl">Your Watchlist</div>
       <hr />
-      <PosterGrid posters={searchQuery.data} size="sm" />
+      <PosterGrid posters={watchlistQuery.data} size="md" />
     </div>
   );
 };

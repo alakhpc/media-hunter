@@ -1,3 +1,8 @@
+import {
+  formatMovieForPoster,
+  formatTVForPoster,
+} from "@/lib/formatMediaForPoster";
+import { tmdb } from "@media-app/common";
 import { prisma } from "@media-app/db";
 import { z } from "zod";
 import { createProtectedRouter } from "../createRouter";
@@ -11,11 +16,19 @@ export const watchlistRouter = createProtectedRouter()
         },
       },
     }) {
-      prisma.watchlist.findMany({
+      let watchlistItems = await prisma.watchlist.findMany({
         select: { tmdbId: true, isTV: true },
         where: { userId },
         orderBy: { createdAt: "desc" },
       });
+
+      let watchlistData = watchlistItems.map(async ({ tmdbId, isTV }) =>
+        isTV
+          ? formatTVForPoster(await tmdb.getTV(tmdbId))
+          : formatMovieForPoster(await tmdb.getMovie(tmdbId))
+      );
+
+      return Promise.all(watchlistData);
     },
   })
   .query("user.check", {

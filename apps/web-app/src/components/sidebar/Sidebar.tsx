@@ -32,8 +32,8 @@ const sidebarCats = [
     {
       name: "Bookmarks",
       icon: HiBookmark,
-      link: "/bookmarks",
-      currentPageCheck: (path: string) => path == "/bookmarks",
+      link: "/watchlist",
+      currentPageCheck: (path: string) => path == "/watchlist",
     },
     {
       name: "History",

@@ -1,5 +1,5 @@
 import { MediaPosterProps } from "@/components/MediaPoster";
-import { Movie, TV } from "@media-app/interfaces";
+import { Movie, MovieDetails, TV, TVDetails } from "@media-app/interfaces";
 
 export const getImageUrl = (poster_path: string | null) => {
   return poster_path
@@ -13,7 +13,7 @@ export const formatMovieForPoster = ({
   poster_path,
   release_date,
   vote_average,
-}: Movie): MediaPosterProps => {
+}: Movie | MovieDetails): MediaPosterProps => {
   return {
     type: "movie",
     id,
@@ -30,7 +30,7 @@ export const formatTVForPoster = ({
   poster_path,
   first_air_date,
   vote_average,
-}: TV): MediaPosterProps => {
+}: TV | TVDetails): MediaPosterProps => {
   return {
     type: "tv",
     id,
