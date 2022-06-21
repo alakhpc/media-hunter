@@ -28,16 +28,16 @@ export const watchlistRouter = createProtectedRouter()
       },
       input: { tmdbId, isTV },
     }) {
-      !!(await prisma.watchlist.findUnique({
+      return !!(await prisma.watchlist.findUnique({
         where: { userId_tmdbId_isTV: { userId, tmdbId, isTV } },
       }));
     },
   })
-  .mutation("user.update", {
+
+  .mutation("user.add", {
     input: z.object({
       tmdbId: z.number().positive(),
       isTV: z.boolean(),
-      operation: z.enum(["add", "remove"]),
     }),
 
     async resolve({
@@ -46,17 +46,30 @@ export const watchlistRouter = createProtectedRouter()
           user: { id: userId },
         },
       },
-      input: { tmdbId, isTV, operation },
+      input: { tmdbId, isTV },
     }) {
-      switch (operation) {
-        case "add":
-          return await prisma.watchlist.create({
-            data: { userId, tmdbId, isTV },
-          });
-        case "remove":
-          return await prisma.watchlist.delete({
-            where: { userId_tmdbId_isTV: { userId, tmdbId, isTV } },
-          });
-      }
+      return await prisma.watchlist.create({
+        data: { userId, tmdbId, isTV },
+      });
+    },
+  })
+  .mutation("user.remove", {
+    input: z.object({
+      tmdbId: z.number().positive(),
+      isTV: z.boolean(),
+    }),
+
+    async resolve({
+      ctx: {
+        session: {
+          user: { id: userId },
+        },
+      },
+      input: { tmdbId, isTV },
+    }) {
+      await prisma.watchlist.delete({
+        where: { userId_tmdbId_isTV: { userId, tmdbId, isTV } },
+      });
+      return null;
     },
   });

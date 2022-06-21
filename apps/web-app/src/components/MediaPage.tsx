@@ -3,14 +3,22 @@ import GenreButton from "@/components/GenreButton";
 import { MediaPosterProps } from "@/components/MediaPoster";
 import RecommendationsSlider from "@/components/RecommendationsSlider";
 import Trailer from "@/components/Trailer";
+import { trpc } from "@/lib/trpc";
+import { useWatchlistItem } from "@/lib/useWatchlistItem";
 import { Genre } from "@media-app/interfaces";
 import Image from "next/image";
 import { useState } from "react";
-import { BsBookmarkPlusFill, BsFillPlayFill } from "react-icons/bs";
+import {
+  BsBookmarkCheckFill,
+  BsBookmarkFill,
+  BsBookmarkPlusFill,
+  BsFillPlayFill,
+} from "react-icons/bs";
 import { HiStar } from "react-icons/hi";
 
 export interface MediaPageProps {
   media_type: "movie" | "tv";
+  id: number;
   title: string;
   overview: string | null;
   poster: string | null;
@@ -28,6 +36,7 @@ export interface MediaPageProps {
 
 const MediaPage = ({
   media_type,
+  id,
   title,
   overview,
   backdrop,
@@ -43,6 +52,18 @@ const MediaPage = ({
   recommendations,
 }: MediaPageProps) => {
   const [trailerShown, setTrailerShown] = useState(false);
+
+  const { inWatchlistQuery, toggleWatchlist } = useWatchlistItem({
+    tmdbId: id,
+    isTV: media_type === "tv",
+  });
+
+  const WatchlistIcon =
+    inWatchlistQuery.data === undefined
+      ? BsBookmarkFill
+      : inWatchlistQuery.data
+      ? BsBookmarkCheckFill
+      : BsBookmarkPlusFill;
 
   return (
     <>
@@ -144,9 +165,9 @@ const MediaPage = ({
 
               <button
                 className="flex flex-row items-center gap-1 rounded-md bg-blue-500 py-2 px-4 transition active:bg-blue-600"
-                onClick={() => {}}
+                onClick={toggleWatchlist}
               >
-                <BsBookmarkPlusFill className="h-4 w-4" />
+                <WatchlistIcon className="h-4 w-4" />
                 <div className="text-sm">Save</div>
               </button>
             </div>
