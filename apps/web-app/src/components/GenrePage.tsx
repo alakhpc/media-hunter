@@ -50,10 +50,11 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
                 .flatMap((m) => m.media)
                 .map((m, i, { length }) => (
                   <MediaPoster
+                    // attach infinite scroll ref to 5th from end
                     ref={length - 6 === i ? ref : null}
+                    preload={i === 0}
                     key={i}
                     border={false}
-                    preload={false}
                     {...m}
                   />
                 ))}
