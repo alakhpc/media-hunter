@@ -7,9 +7,9 @@ export const UserButton = () => {
   return session ? (
     <div
       onClick={() => signOut()}
-      className="flex cursor-pointer flex-row items-center space-x-2"
+      className="flex cursor-pointer flex-row items-center justify-center space-x-2"
     >
-      <div className="flex w-20 flex-row justify-end">
+      <div className="flex w-[48px] flex-row justify-end">
         <Image
           src={session.user?.image || "https://http.cat/404"}
           width={48}
@@ -22,7 +22,7 @@ export const UserButton = () => {
     </div>
   ) : (
     <button
-      className="w-20 rounded-md border-2 border-white py-1.5 transition duration-150 hover:bg-white hover:text-black"
+      className="rounded-md border-2 border-white py-1.5 transition duration-150 hover:bg-white hover:text-black md:w-20"
       onClick={() => signIn("google")}
     >
       Login
