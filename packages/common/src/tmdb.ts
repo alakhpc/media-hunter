@@ -56,22 +56,26 @@ export const getMovieTVSearch = async (query: string) => {
   );
 };
 
-export const getMoviesByGenre = async (genreId: string | number) => {
-  return (
-    await tmdbFetcher<TMDBListWrapper<Movie>>("discover/movie", {
-      with_genres: genreId,
-      sort_by: "popularity.desc",
-    })
-  ).results;
+export const getMoviesByGenre = async (
+  genreId: string | number,
+  page: number | null
+) => {
+  return await tmdbFetcher<TMDBListWrapper<Movie>>("discover/movie", {
+    with_genres: genreId,
+    sort_by: "popularity.desc",
+    page,
+  });
 };
 
-export const getTVSByGenre = async (genreId: string | number) => {
-  return (
-    await tmdbFetcher<TMDBListWrapper<TV>>("discover/tv", {
-      with_genres: genreId,
-      sort_by: "popularity.desc",
-    })
-  ).results;
+export const getTVSByGenre = async (
+  genreId: string | number,
+  page: number | null
+) => {
+  return await tmdbFetcher<TMDBListWrapper<TV>>("discover/tv", {
+    with_genres: genreId,
+    sort_by: "popularity.desc",
+    page,
+  });
 };
 
 export const getMoviePageDetails = async (id: number) => {

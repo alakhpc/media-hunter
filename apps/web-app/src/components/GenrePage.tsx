@@ -1,6 +1,7 @@
 import { trpc } from "@/lib/trpc";
 import { Genre } from "@media-app/interfaces";
 import { NextSeo } from "next-seo";
+import { useInView } from "react-intersection-observer";
 import GenreButton from "./GenreButton";
 import MediaPoster from "./MediaPoster";
 
@@ -12,11 +13,15 @@ interface GenrePageProps {
 }
 
 const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
+  const { ref } = useInView({
+    onChange: (inView) => inView && fetchNextPage(),
+  });
+
   const { data, fetchNextPage } = trpc.useInfiniteQuery(
-    ["genres.movie", { genreId }],
+    [`genres.${media_type}`, { genreId }],
     {
       getNextPageParam: ({ nextPage }) => {
-        return nextPage;
+        return nextPage ?? undefined;
       },
     }
   );
@@ -26,7 +31,7 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
       <NextSeo title={text} />
       <div className="mx-4 mt-5 flex flex-col space-y-4">
         <div className="text-3xl md:text-4xl">{text}</div>
-        <div className="flex flex-row space-x-2">
+        <div className="flex flex-row flex-wrap gap-2">
           {genres.map((g) => (
             <GenreButton
               key={g.id}
@@ -38,12 +43,23 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
         </div>
         <hr />
         <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-3 md:grid-cols-[repeat(auto-fill,minmax(148px,1fr))]">
-          {data?.pages
-            .map((m) => m.media)
-            .flat()
-            .map((m, i) => (
-              <MediaPoster key={i} border={false} preload={false} {...m} />
-            ))}
+          {data?.pages ? (
+            <>
+              {data.pages
+                .flatMap((m) => m.media)
+                .map((m, i, { length }) => (
+                  <MediaPoster
+                    ref={length - 6 === i ? ref : null}
+                    key={i}
+                    border={false}
+                    preload={false}
+                    {...m}
+                  />
+                ))}
+            </>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     </>

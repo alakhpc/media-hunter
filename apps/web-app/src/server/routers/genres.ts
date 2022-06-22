@@ -1,4 +1,3 @@
-import { MediaPosterProps } from "@/components/MediaPoster";
 import {
   formatMovieForPoster,
   formatTVForPoster,
@@ -15,10 +14,13 @@ export const genresRouter = createRouter()
     }),
 
     async resolve({ input: { genreId, cursor } }) {
-      let media = (await getMoviesByGenre(genreId)).map(formatMovieForPoster);
+      let res = await getMoviesByGenre(genreId, cursor ?? 1);
+
+      let media = res.results.map(formatMovieForPoster);
+      let nextPage = res.page !== res.total_pages ? res.page + 1 : null;
 
       return {
-        nextPage: cursor ?? 1 + 1,
+        nextPage,
         media,
       };
     },
@@ -30,10 +32,13 @@ export const genresRouter = createRouter()
     }),
 
     async resolve({ input: { genreId, cursor } }) {
-      let media = (await getTVSByGenre(genreId)).map(formatTVForPoster);
+      let res = await getTVSByGenre(genreId, cursor ?? 1);
+
+      let media = res.results.map(formatTVForPoster);
+      let nextPage = res.page !== res.total_pages ? res.page + 1 : null;
 
       return {
-        nextPage: cursor ?? 1 + 1,
+        nextPage,
         media,
       };
     },

@@ -1,7 +1,5 @@
 import GenrePage from "@/components/GenrePage";
-import { formatTVForPoster } from "@/lib/formatMediaForPoster";
 import { tvGenres } from "@/lib/genres";
-import { tmdb } from "@media-app/common";
 import InferNextProps from "infer-next-props-type";
 import { GetStaticPropsContext } from "next";
 
