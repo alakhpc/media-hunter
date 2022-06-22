@@ -6,6 +6,7 @@ import Trailer from "@/components/Trailer";
 import { trpc } from "@/lib/trpc";
 import { useWatchlistItem } from "@/lib/useWatchlistItem";
 import { Genre } from "@media-app/interfaces";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
 import {
@@ -67,6 +68,20 @@ const MediaPage = ({
 
   return (
     <>
+      <NextSeo
+        title={title}
+        description={overview || "No description available"}
+        openGraph={{
+          images: [
+            {
+              url: backdrop ?? "http.cat/404",
+              type: "image/jpeg",
+              alt: `${title} backdrop`,
+            },
+          ],
+        }}
+      />
+
       {trailerShown && (
         <Trailer ytKey={trailerKey} onClose={() => setTrailerShown(false)} />
       )}
