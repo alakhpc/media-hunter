@@ -1,24 +1,29 @@
+import { trpc } from "@/lib/trpc";
 import { Genre } from "@media-app/interfaces";
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
 import GenreButton from "./GenreButton";
-import MediaPoster, { MediaPosterProps } from "./MediaPoster";
+import MediaPoster from "./MediaPoster";
 
 interface GenrePageProps {
   media_type: "movie" | "tv";
+  genreId: number;
   genres: Genre[];
   text: string;
-  media: MediaPosterProps[];
 }
 
-const GenrePage = ({ media_type, genres, text, media }: GenrePageProps) => {
-  const router = useRouter();
-  const genreId = parseInt(router.query.id as string);
+const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
+  const { data, fetchNextPage } = trpc.useInfiniteQuery(
+    ["genres.movie", { genreId }],
+    {
+      getNextPageParam: ({ nextPage }) => {
+        return nextPage;
+      },
+    }
+  );
 
   return (
     <>
       <NextSeo title={text} />
-
       <div className="mx-4 mt-5 flex flex-col space-y-4">
         <div className="text-3xl md:text-4xl">{text}</div>
         <div className="flex flex-row space-x-2">
@@ -33,9 +38,12 @@ const GenrePage = ({ media_type, genres, text, media }: GenrePageProps) => {
         </div>
         <hr />
         <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-3 md:grid-cols-[repeat(auto-fill,minmax(148px,1fr))]">
-          {media.map((r, i) => (
-            <MediaPoster key={i} preload={false} {...r} border={true} />
-          ))}
+          {data?.pages
+            .map((m) => m.media)
+            .flat()
+            .map((m, i) => (
+              <MediaPoster key={i} border={false} preload={false} {...m} />
+            ))}
         </div>
       </div>
     </>

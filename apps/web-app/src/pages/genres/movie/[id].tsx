@@ -5,13 +5,13 @@ import { tmdb } from "@media-app/common";
 import InferNextProps from "infer-next-props-type";
 import { GetStaticPropsContext } from "next";
 
-const MovieGenresPage = ({ media }: InferNextProps<typeof getStaticProps>) => {
+const MovieGenresPage = ({ id }: InferNextProps<typeof getStaticProps>) => {
   return (
     <GenrePage
       media_type="movie"
+      genreId={id}
       genres={movieGenres}
       text="Browse Movies"
-      media={media}
     />
   );
 };
@@ -27,13 +27,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   const id = parseInt(params?.id as string);
-  const movies = (await tmdb.getMoviesByGenre(id)).map(formatMovieForPoster);
 
   return {
-    props: {
-      media: movies,
-    },
-
+    props: { id },
     revalidate: 604800, // Revalidate every week
   };
 };
