@@ -1,3 +1,4 @@
+import MediaPoster from "@/components/MediaPoster";
 import PosterGrid from "@/components/PosterGrid";
 import { trpc } from "@/lib/trpc";
 import { NextSeo } from "next-seo";
@@ -17,7 +18,15 @@ const Search = () => {
           Search Results for <p className="inline font-semibold">{query}</p>
         </div>
         <hr />
-        <PosterGrid posters={searchQuery.data} size="sm" />
+        <PosterGrid size="sm">
+          {searchQuery.data ? (
+            searchQuery.data.map((r, i) => (
+              <MediaPoster key={i} preload={false} border={false} {...r} />
+            ))
+          ) : (
+            <></>
+          )}
+        </PosterGrid>
       </div>
     </>
   );

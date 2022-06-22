@@ -4,6 +4,7 @@ import { NextSeo } from "next-seo";
 import { useInView } from "react-intersection-observer";
 import GenreButton from "./GenreButton";
 import MediaPoster from "./MediaPoster";
+import PosterGrid from "./PosterGrid";
 
 interface GenrePageProps {
   media_type: "movie" | "tv";
@@ -42,7 +43,7 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
           ))}
         </div>
         <hr />
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] gap-3 md:grid-cols-[repeat(auto-fill,minmax(148px,1fr))]">
+        <PosterGrid size="md">
           {data?.pages ? (
             <>
               {data.pages
@@ -60,7 +61,7 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
           ) : (
             <div />
           )}
-        </div>
+        </PosterGrid>
       </div>
     </>
   );
