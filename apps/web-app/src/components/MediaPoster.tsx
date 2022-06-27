@@ -47,6 +47,8 @@ const MediaPoster = forwardRef(
                 height={3}
                 alt={`${title} poster`}
                 className="rounded-lg"
+                // @ts-expect-error For some reason smooth is not a valid value?? fix ts pls
+                style={{ imageRendering: "smooth" }}
                 sizes="(min-width: 768px) 192px, 144px"
               />
             </div>
