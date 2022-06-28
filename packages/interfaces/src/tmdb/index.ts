@@ -19,5 +19,6 @@ export * from "./TMDBListWrapper";
 export * from "./TV";
 export * from "./TVDetails";
 export * from "./TVExternalIds";
+export * from "./TVSeason";
 export * from "./Video";
 export * from "./Videos";

@@ -32,7 +32,7 @@ export const watchlistRouter = createProtectedRouter()
     },
   })
   .query("user.check", {
-    input: z.object({ tmdbId: z.number().positive(), isTV: z.boolean() }),
+    input: z.object({ tmdbId: z.number().int().positive(), isTV: z.boolean() }),
     async resolve({
       ctx: {
         session: {
@@ -49,7 +49,7 @@ export const watchlistRouter = createProtectedRouter()
 
   .mutation("user.add", {
     input: z.object({
-      tmdbId: z.number().positive(),
+      tmdbId: z.number().int().positive(),
       isTV: z.boolean(),
     }),
 
@@ -68,7 +68,7 @@ export const watchlistRouter = createProtectedRouter()
   })
   .mutation("user.remove", {
     input: z.object({
-      tmdbId: z.number().positive(),
+      tmdbId: z.number().int().positive(),
       isTV: z.boolean(),
     }),
 

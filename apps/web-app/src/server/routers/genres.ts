@@ -27,8 +27,8 @@ export const genresRouter = createRouter()
   })
   .query("tv", {
     input: z.object({
-      genreId: z.number().positive(),
-      cursor: z.number().positive().nullish(),
+      genreId: z.number().int().positive(),
+      cursor: z.number().int().positive().nullish(),
     }),
 
     async resolve({ input: { genreId, cursor } }) {

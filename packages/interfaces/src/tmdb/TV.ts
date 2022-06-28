@@ -1,6 +1,6 @@
 export interface TV {
   backdrop_path: string | null;
-  first_air_date?: string;
+  first_air_date?: string | null;
   genre_ids: number[];
   id: number;
   name: string;

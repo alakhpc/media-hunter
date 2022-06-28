@@ -1,6 +1,5 @@
 import type {
   Credits,
-  Genre,
   Images,
   Movie,
   MovieDetails,
@@ -10,6 +9,7 @@ import type {
   TMDBListWrapper,
   TV,
   TVDetails,
+  TVSeason,
   TVWithMediaType,
   Videos,
 } from "@media-app/interfaces";
@@ -102,10 +102,6 @@ export const getTVPageDetails = async (id: number) => {
   return tvData;
 };
 
-export const getMovieGenres = async () => {
-  return (await tmdbFetcher<{ genres: Genre[] }>(`genre/movie/list`)).genres;
-};
-
-export const getTVGenres = async () => {
-  return (await tmdbFetcher<{ genres: Genre[] }>(`genre/tv/list`)).genres;
+export const getTVSeason = async (id: number, seasonNumber: number) => {
+  return await tmdbFetcher<TVSeason>(`tv/${id}/season/${seasonNumber}`);
 };
