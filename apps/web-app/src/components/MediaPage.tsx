@@ -3,12 +3,12 @@ import GenreButton from "@/components/GenreButton";
 import { MediaPosterProps } from "@/components/MediaPoster";
 import RecommendationsSlider from "@/components/RecommendationsSlider";
 import Trailer from "@/components/Trailer";
-import { trpc } from "@/lib/trpc";
 import { useWatchlistItem } from "@/lib/useWatchlistItem";
 import { Genre } from "@media-app/interfaces";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { useState } from "react";
+import { IconType } from "react-icons";
 import {
   BsBookmarkCheckFill,
   BsBookmarkFill,
@@ -33,6 +33,8 @@ export interface MediaPageProps {
   trailerKey: string | null;
   cast: { id: number; name: string; character: string; image: string | null }[];
   recommendations: MediaPosterProps[];
+
+  extraButton?: { text: string; icon: IconType; onClick: () => void };
 }
 
 const MediaPage = ({
@@ -51,6 +53,8 @@ const MediaPage = ({
   trailerKey,
   cast,
   recommendations,
+
+  extraButton,
 }: MediaPageProps) => {
   const [trailerShown, setTrailerShown] = useState(false);
 
@@ -168,6 +172,16 @@ const MediaPage = ({
             </div>
 
             <div className="flex flex-row gap-1.5">
+              {extraButton && (
+                <button
+                  className="flex flex-row items-center gap-1 rounded-md bg-lightgray py-2 px-4 transition duration-200 hover:bg-white hover:text-black"
+                  onClick={extraButton.onClick}
+                >
+                  <extraButton.icon className="h-5 w-5" />
+                  <div className="text-sm">{extraButton.text}</div>
+                </button>
+              )}
+
               <button
                 className="flex flex-row items-center gap-1 rounded-md bg-lightgray py-2 px-4 transition duration-200 hover:bg-white hover:text-black"
                 onClick={() => {

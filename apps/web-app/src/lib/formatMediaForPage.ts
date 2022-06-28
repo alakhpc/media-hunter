@@ -96,6 +96,9 @@ export const formatTVForPage = (
     image: getImageUrl(p.profile_path),
   }));
   const recommendations = tv.recommendations.results.map(formatTVForPoster);
+  const seasons = tv.seasons
+    .filter((s) => s.season_number !== 0)
+    .map((s) => s.season_number);
 
   return {
     media_type,

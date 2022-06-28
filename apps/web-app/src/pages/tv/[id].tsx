@@ -1,11 +1,39 @@
-import MediaPage, { MediaPageProps } from "@/components/MediaPage";
+import EpisodesModal from "@/components/EpisodesModal";
+import MediaPage from "@/components/MediaPage";
 import { tmdb } from "@media-app/common";
 import InferNextProps from "infer-next-props-type";
 import { formatTVForPage } from "lib/formatMediaForPage";
 import { GetStaticPaths, GetStaticPropsContext } from "next";
+import { useState } from "react";
+import { BsFillPlayFill } from "react-icons/bs";
 
-const MoviePage = (props: InferNextProps<typeof getStaticProps>) => {
-  return <MediaPage {...props} />;
+const TVPage = ({
+  seasons,
+  ...props
+}: InferNextProps<typeof getStaticProps>) => {
+  const [episodesShown, setEpisodesShown] = useState(false);
+
+  return (
+    <>
+      <MediaPage
+        extraButton={{
+          text: "Episodes",
+          icon: BsFillPlayFill,
+          onClick: () => {
+            setEpisodesShown(true);
+          },
+        }}
+        {...props}
+      />
+
+      <EpisodesModal
+        shown={episodesShown}
+        setShown={setEpisodesShown}
+        tmdbId={props.id}
+        seasons={seasons}
+      />
+    </>
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -30,10 +58,14 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   }
 
   const props = formatTVForPage(tvData);
+  const seasons = tvData.seasons
+    .filter((s) => s.season_number !== 0)
+    .map((s) => s.season_number);
+
   return {
-    props,
+    props: { ...props, seasons },
     revalidate: 604800, // Revalidate every week
   };
 };
 
-export default MoviePage;
+export default TVPage;

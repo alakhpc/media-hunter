@@ -11,6 +11,7 @@ module.exports = {
         // theme: "#151828",
         theme: "#191c2f",
         gray: "#2D2F3E",
+        "gray-500": "#6B7280",
         lightgray: "#2D2F3E",
         graytext: "#9CA3AF",
         border: "#818392",
