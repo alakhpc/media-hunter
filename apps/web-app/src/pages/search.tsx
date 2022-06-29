@@ -4,11 +4,25 @@ import ShimmerPoster from "@/components/ShimmerPoster";
 import { trpc } from "@/lib/trpc";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import { useInView } from "react-intersection-observer";
 
 const Search = () => {
   const router = useRouter();
   const query = router.query.q as string;
-  const searchQuery = trpc.useQuery(["search.multi", query]);
+
+  const { data, fetchNextPage } = trpc.useInfiniteQuery(
+    ["search.multi", { query }],
+    {
+      getNextPageParam: ({ nextPage }) => {
+        return nextPage ?? undefined;
+      },
+    }
+  );
+  let media = data?.pages.flatMap((m) => m.media);
+
+  const { ref } = useInView({
+    onChange: (inView) => inView && fetchNextPage(),
+  });
 
   return (
     <>
@@ -20,10 +34,16 @@ const Search = () => {
         </div>
         <hr />
         <PosterGrid size="sm">
-          {searchQuery.data ? (
-            searchQuery.data.length > 0 ? (
-              searchQuery.data.map((r, i) => (
-                <MediaPoster key={i} preload={false} border={false} {...r} />
+          {media !== undefined ? (
+            media.length > 0 ? (
+              media.map((r, i, { length }) => (
+                <MediaPoster
+                  ref={length - 6 === i ? ref : null}
+                  key={i}
+                  preload={false}
+                  border={false}
+                  {...r}
+                />
               ))
             ) : (
               <div>No results :(</div>

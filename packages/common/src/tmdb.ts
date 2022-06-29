@@ -42,18 +42,23 @@ export const getTV = async (id: string | number) => {
   return await tmdbFetcher<TVDetails>(`tv/${id}`);
 };
 
-export const getMultiSearch = async (query: string) => {
+export const getMultiSearch = async (query: string, page: number) => {
   type ResultT = MovieWithMediaType | TVWithMediaType | PersonWithMediaType;
-  return (
-    await tmdbFetcher<TMDBListWrapper<ResultT>>("search/multi", { query })
-  ).results;
+  return await tmdbFetcher<TMDBListWrapper<ResultT>>("search/multi", {
+    query,
+    page,
+  });
 };
 
-export const getMovieTVSearch = async (query: string) => {
-  return (await getMultiSearch(query)).filter(
+export const getMovieTVSearch = async (query: string, page: number) => {
+  let res = await getMultiSearch(query, page);
+
+  const results = res.results.filter(
     (m): m is MovieWithMediaType | TVWithMediaType =>
       m.media_type === "movie" || m.media_type === "tv"
   );
+
+  return { ...res, results };
 };
 
 export const getMoviesByGenre = async (
