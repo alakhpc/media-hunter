@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import GenreButton from "./GenreButton";
 import MediaPoster from "./MediaPoster";
 import PosterGrid from "./PosterGrid";
+import ShimmerPoster from "./ShimmerPoster";
 
 interface GenrePageProps {
   media_type: "movie" | "tv";
@@ -14,6 +15,8 @@ interface GenrePageProps {
 }
 
 const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
+  const genreName = genres.find((g) => g.id === genreId)!.name;
+
   const { ref } = useInView({
     onChange: (inView) => inView && fetchNextPage(),
   });
@@ -29,7 +32,10 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
 
   return (
     <>
-      <NextSeo title={text} />
+      <NextSeo
+        title={`${genreName} ${media_type === "movie" ? "Movies" : "TV"}`}
+      />
+
       <div className="mx-4 mt-5 flex flex-col space-y-4">
         <div className="text-3xl md:text-4xl">{text}</div>
         <div className="flex flex-row flex-wrap gap-2">
@@ -58,9 +64,12 @@ const GenrePage = ({ media_type, genreId, genres, text }: GenrePageProps) => {
                     {...m}
                   />
                 ))}
+              {[...Array(15)].map((_, i) => (
+                <ShimmerPoster key={i} />
+              ))}
             </>
           ) : (
-            <div />
+            [...Array(20)].map((_, i) => <ShimmerPoster key={i} />)
           )}
         </PosterGrid>
       </div>
