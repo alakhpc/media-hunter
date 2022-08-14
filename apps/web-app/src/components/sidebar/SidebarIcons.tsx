@@ -23,7 +23,7 @@ const SidebarIcon = ({ categories }: SidebarIconProps) => {
           key={i}
           className="flex flex-col space-y-[26px] border-b border-border border-opacity-50 py-9"
         >
-          {cat.map(({ currentPageCheck, ...icon }, i) => {
+          {cat.map(({ currentPageCheck, ...icon }) => {
             const isCurrent = currentPageCheck(router.asPath);
             return (
               <Link key={icon.name} href={icon.link}>

@@ -7,7 +7,8 @@
       "@/components/*": ["./components/*"],
       "@/stores/*": ["./stores/*"],
       "@/lib/*": ["./lib/*"],
-      "@/server/*": ["./server/*"]
+      "@/server/*": ["./server/*"],
+      "@/pages/*": ["./pages/*"]
     },
 
     "strict": true,
