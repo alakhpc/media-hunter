@@ -13,10 +13,10 @@
     "push": "yarn withenv prisma db push"
   },
   "dependencies": {
-    "@prisma/client": "^4.0.0"
+    "@prisma/client": "^4.2.1"
   },
   "devDependencies": {
-    "prisma": "^4.0.0"
+    "prisma": "^4.2.1"
   },
   "packageManager": "yarn@3.2.1"
 }
