@@ -12,7 +12,7 @@ const Slider = ({ preload, text, items: items }: SliderProps) => {
       <div className="text-4xl">{text}</div>
       <div className="-m-2 flex flex-row space-x-3 overflow-x-auto p-2 scrollbar-hide">
         {items.map((m, i) => (
-          <div key={i} className="min-w-[148px] md:min-w-[196px]">
+          <div key={i} className="min-w-[148px] md:min-w-[180px]">
             <MediaPoster
               key={i}
               preload={preload && i == 0}

@@ -1,6 +1,6 @@
 const sizes = {
   sm: "grid-cols-[repeat(auto-fill,minmax(110px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(148px,1fr))]",
-  md: "grid-cols-[repeat(auto-fill,minmax(148px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(196px,1fr))]",
+  md: "grid-cols-[repeat(auto-fill,minmax(148px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(180px,1fr))]",
 };
 
 interface PosterGridProps {
