@@ -2683,9 +2683,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"media-app@workspace:.":
+"media-hunter@workspace:.":
   version: 0.0.0-use.local
-  resolution: "media-app@workspace:."
+  resolution: "media-hunter@workspace:."
   dependencies:
     "@next-auth/prisma-adapter": ^1.0.4
     "@prisma/client": ^4.3.1

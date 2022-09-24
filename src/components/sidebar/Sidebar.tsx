@@ -75,7 +75,7 @@ const Sidebar = () => {
               sidebarOpen ? "opacity-90" : "invisible opacity-0"
             } whitespace-nowrap transition-all duration-200`}
           >
-            Media-app
+            Media Hunter
           </div>
         </div>
 

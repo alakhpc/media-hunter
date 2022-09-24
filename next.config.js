@@ -13,7 +13,7 @@ const nextConfig = {
   redirects: async () => [
     {
       source: "/github",
-      destination: "https://github.com/alakhpc/media-app",
+      destination: "https://github.com/alakhpc/media-hunter",
       permanent: true,
     },
   ],

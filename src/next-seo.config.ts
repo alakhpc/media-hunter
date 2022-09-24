@@ -1,11 +1,11 @@
 import type { DefaultSeoProps } from "next-seo";
 
 export const SEO: DefaultSeoProps = {
-  titleTemplate: `%s | Media-app`,
-  defaultTitle: "Media-app",
+  titleTemplate: `%s | Media Hunter`,
+  defaultTitle: "Media Hunter",
   description: "Keep track of your media across services 🚀",
   openGraph: {
-    site_name: "Media-app",
+    site_name: "Media Hunter",
     images: [],
   },
   additionalMetaTags: [
@@ -15,7 +15,7 @@ export const SEO: DefaultSeoProps = {
     },
     {
       name: "application-name",
-      content: "Media-app",
+      content: "Media Hunter",
     },
   ],
   additionalLinkTags: [
