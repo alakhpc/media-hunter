@@ -9,11 +9,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "withenv": "env-cmd --silent -f ../../.env --",
-    "dev": "yarn withenv next dev -H 127.0.0.1",
-    "build": "yarn withenv next build",
-    "start": "yarn withenv next start ",
-    "lint": "yarn withenv next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "docker": "prisma migrate deploy && next start"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.4",

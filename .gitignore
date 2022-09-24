@@ -4,6 +4,8 @@
 
 ### Node ###
 # Logs
+postgres
+
 logs
 *.log
 npm-debug.log*
