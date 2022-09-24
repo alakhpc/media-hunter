@@ -1,19 +1,21 @@
 services:
   postgres:
+    container_name: media-hunter-postgres
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=media-app
+      - POSTGRES_PASSWORD=media-hunter
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
   web:
+    container_name: media-hunter
     build:
       context: .
       dockerfile: ./Dockerfile
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgresql://postgres:media-app@postgres:5432/postgres?connect_timeout=300
+      - DATABASE_URL=postgresql://postgres:media-hunter@media-app-postgres:5432/postgres?connect_timeout=300
 
 networks:
   default:
