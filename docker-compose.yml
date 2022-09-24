@@ -15,7 +15,7 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgresql://postgres:media-hunter@media-app-postgres:5432/postgres?connect_timeout=300
+      - DATABASE_URL=postgresql://postgres:media-hunter@media-hunter-postgres:5432/postgres?connect_timeout=300
 
 networks:
   default:
