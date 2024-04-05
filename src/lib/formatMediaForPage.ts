@@ -28,6 +28,7 @@ export const formatMovieForPage = (
 
   const media_type = "movie";
   const id = m.id;
+  const imdb_id = m.imdb_id;
   const status = m.status;
   const title = m.title;
   const overview = m.overview;
@@ -50,6 +51,7 @@ export const formatMovieForPage = (
   return {
     media_type,
     id,
+    imdb_id,
     status,
     title,
     overview,
@@ -78,6 +80,7 @@ export const formatTVForPage = (
 
   const media_type = "tv";
   const id = tv.id;
+  const imdb_id = tv.status;
   const status = tv.status;
   const title = tv.name;
   const overview = tv.overview;
@@ -103,6 +106,7 @@ export const formatTVForPage = (
   return {
     media_type,
     id,
+    imdb_id,
     status,
     title,
     overview,

@@ -20,6 +20,7 @@ import { HiStar } from "react-icons/hi";
 export interface MediaPageProps {
   media_type: "movie" | "tv";
   id: number;
+  imdb_id: string | null;
   title: string;
   overview: string | null;
   poster: string | null;
