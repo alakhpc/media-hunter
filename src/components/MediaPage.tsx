@@ -107,12 +107,13 @@ const MediaPage = ({
           alt={`${title} backdrop`}
           sizes="100vw"
           className="opacity-90"
-        />
+          />
 
         {!!logo && (
           <div className="absolute inset-[50%] h-full max-h-[60%] w-full max-w-[85%] translate-x-[-50%] translate-y-[-70%] md:max-w-2xl md:translate-y-[-60%]">
             <Image
               src={logo}
+              priority={true}
               layout="fill"
               objectFit="contain"
               alt={`${title} logo`}
