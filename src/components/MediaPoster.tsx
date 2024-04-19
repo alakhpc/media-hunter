@@ -40,6 +40,7 @@ const MediaPoster = forwardRef(
               } shrink-0 rounded-lg shadow-sm transition duration-200 hover:scale-105`}
             >
               <Image
+                unoptimized
                 src={poster || "https://http.cat/404"}
                 layout="responsive"
                 width={2}

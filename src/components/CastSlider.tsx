@@ -17,6 +17,7 @@ const CastSlider = ({ cast }: CastSliderProps) => {
               <div className="flex cursor-pointer flex-col space-y-3">
                 <div className="w-32 shrink-0 rounded-lg shadow-sm transition duration-200 hover:scale-105 md:w-36">
                   <Image
+                    unoptimized
                     src={image || "https://http.cat/404"}
                     layout="responsive"
                     width={2}

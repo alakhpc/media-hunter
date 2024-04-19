@@ -65,6 +65,7 @@ const EpisodesModal = ({
                           <div className="flex flex-row flex-wrap gap-4 md:flex-nowrap">
                             <div className="group relative aspect-video h-44 rounded-lg">
                               <Image
+                                unoptimized
                                 src={e.image || "https://http.cat/404"}
                                 layout="responsive"
                                 width={160}

@@ -11,6 +11,7 @@ export const UserButton = () => {
     >
       <div className="flex w-[48px] flex-row justify-end">
         <Image
+          unoptimized
           src={session.user?.image || "https://http.cat/404"}
           width={48}
           height={48}

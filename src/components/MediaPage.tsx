@@ -99,6 +99,7 @@ const MediaPage = ({
         {/* <div className="absolute bottom-0 z-10 h-1/3 w-full bg-gradient-to-t from-theme to-transparent" /> */}
 
         <Image
+          unoptimized
           src={backdrop || "https://http.cat/404"}
           priority={true}
           layout="fill"
@@ -107,7 +108,7 @@ const MediaPage = ({
           alt={`${title} backdrop`}
           sizes="100vw"
           className="opacity-90"
-          />
+        />
 
         {!!logo && (
           <div className="absolute inset-[50%] h-full max-h-[60%] w-full max-w-[85%] translate-x-[-50%] translate-y-[-70%] md:max-w-2xl md:translate-y-[-60%]">
