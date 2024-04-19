@@ -113,6 +113,7 @@ const MediaPage = ({
         {!!logo && (
           <div className="absolute inset-[50%] h-full max-h-[60%] w-full max-w-[85%] translate-x-[-50%] translate-y-[-70%] md:max-w-2xl md:translate-y-[-60%]">
             <Image
+              unoptimized
               src={logo}
               priority={true}
               layout="fill"
@@ -129,6 +130,7 @@ const MediaPage = ({
           <div className="mx-auto -mt-36 w-56 rounded-3xl md:-mt-40 md:w-64">
             <div className="group relative">
               <Image
+                unoptimized
                 src={poster || "https://http.cat/404"}
                 priority={true}
                 layout="responsive"
