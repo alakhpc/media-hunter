@@ -11,7 +11,7 @@ export interface MediaPosterProps {
   title: string;
   poster: string | null;
   year: string | null;
-  rating: string;
+  rating?: string;
 }
 
 const MediaPoster = forwardRef(

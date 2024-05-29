@@ -26,7 +26,7 @@ export interface TVDetails {
     production_code: string | null;
     season_number: number;
     still_path: string | null;
-    vote_average: number;
+    vote_average?: number;
     vote_count: number;
   } | null;
   name: string;
@@ -39,7 +39,7 @@ export interface TVDetails {
     production_code: string;
     season_number: number;
     still_path: string | null;
-    vote_average: number;
+    vote_average?: number;
     vote_count: number;
   } | null;
   networks: Network[];
@@ -58,6 +58,6 @@ export interface TVDetails {
   status: string;
   tagline: string | null;
   type: string;
-  vote_average: number;
+  vote_average?: number;
   vote_count: number;
 }

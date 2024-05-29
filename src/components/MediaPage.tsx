@@ -27,7 +27,7 @@ export interface MediaPageProps {
   backdrop: string | null;
   logo: string | null;
   genres: Genre[];
-  rating: string;
+  rating?: string;
   runtime: string;
   year: string | null;
   status: string;

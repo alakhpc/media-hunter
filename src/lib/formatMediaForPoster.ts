@@ -20,7 +20,7 @@ export const formatMovieForPoster = ({
     title,
     poster: getImageUrl(poster_path),
     year: release_date?.slice(0, 4) ?? null,
-    rating: vote_average.toFixed(1),
+    rating: vote_average?.toFixed(1),
   };
 };
 
@@ -37,6 +37,6 @@ export const formatTVForPoster = ({
     title: name,
     poster: poster_path ? getImageUrl(poster_path) : null,
     year: first_air_date?.slice(0, 4) ?? null,
-    rating: vote_average.toFixed(1),
+    rating: vote_average?.toFixed(1),
   };
 };

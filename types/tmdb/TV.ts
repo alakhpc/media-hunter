@@ -10,7 +10,7 @@ export interface TV {
   overview: string;
   popularity: number;
   poster_path: string | null;
-  vote_average: number;
+  vote_average?: number;
   vote_count: number;
 }
 

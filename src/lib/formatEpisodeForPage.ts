@@ -18,7 +18,7 @@ export const formatEpisodeForPage = (episode: TVSeason["episodes"][number]) => {
     overview,
     air_date,
     episode_number,
-    rating: rating.toFixed(1),
+    rating: rating?.toFixed(1),
     image: still_path ? getImageUrl(still_path) : null,
   };
 };

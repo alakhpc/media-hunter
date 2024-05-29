@@ -28,6 +28,6 @@ export interface MovieDetails {
   tagline: string | null;
   title: string;
   video: boolean;
-  vote_average: number;
+  vote_average?: number;
   vote_count: number;
 }

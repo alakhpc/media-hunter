@@ -7,7 +7,6 @@ import {
   Recommendations,
   TV,
   TVDetails,
-  TVExternalIds,
   Videos,
 } from "@/types/tmdb";
 import {
@@ -37,7 +36,7 @@ export const formatMovieForPage = (
   const logo = getImageUrl(m.images.logos[0]?.file_path ?? null);
   const trailerKey = ytKey;
   const genres = m.genres.slice(0, 4);
-  const rating = m.vote_average.toFixed(1);
+  const rating = m.vote_average?.toFixed(1);
   const runtime = `${Math.floor(runtimeValue / 60)}h ${runtimeValue % 60}m`;
   const year = m.release_date?.slice(0, 4) ?? null;
   const cast = m.credits.cast.slice(0, 20).map((p) => ({
@@ -89,7 +88,7 @@ export const formatTVForPage = (
   const logo = getImageUrl(tv.images.logos[0]?.file_path ?? null);
   const trailerKey = ytKey;
   const genres = tv.genres.slice(0, 4);
-  const rating = tv.vote_average.toFixed(1);
+  const rating = tv.vote_average?.toFixed(1);
   const runtime = `${runtimeValue % 60}m`;
   const year = tv.first_air_date?.slice(0, 4) ?? null;
   const cast = tv.credits.cast.slice(0, 20).map((p) => ({
@@ -99,9 +98,6 @@ export const formatTVForPage = (
     image: getImageUrl(p.profile_path),
   }));
   const recommendations = tv.recommendations.results.map(formatTVForPoster);
-  const seasons = tv.seasons
-    .filter((s) => s.season_number !== 0)
-    .map((s) => s.season_number);
 
   return {
     media_type,
